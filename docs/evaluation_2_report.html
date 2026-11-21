@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Evaluation 2 - Student Record Management System (SRMS)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        body {
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            color: #222;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 85vh;
+            text-align: center;
+            border: 2px solid #004d40;
+            padding: 40px;
+            margin-top: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        }
+        .cover h1 {
+            color: #004d40;
+            font-size: 30pt;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cover h2 {
+            color: #0277bd;
+            font-size: 20pt;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        .cover .subtitle {
+            font-size: 13pt;
+            color: #555;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .meta-box {
+            width: 85%;
+            margin: 25px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .meta-box th, .meta-box td {
+            border: 1px solid #ccd;
+            padding: 10px 16px;
+            text-align: left;
+            font-size: 11pt;
+        }
+        .meta-box th {
+            background-color: #004d40;
+            color: #fff;
+            width: 40%;
+        }
+        .meta-box td {
+            background-color: #f9fbfd;
+            font-weight: 500;
+        }
+        .evaluation-badge {
+            display: inline-block;
+            background-color: #004d40;
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        h2.section-title {
+            color: #004d40;
+            border-bottom: 2px solid #004d40;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 16pt;
+        }
+        h3.file-title {
+            color: #004d40;
+            background-color: #e0f2f1;
+            padding: 6px 12px;
+            border-left: 4px solid #004d40;
+            font-size: 12pt;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 8.5pt;
+            line-height: 1.35;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .badge {
+            background: #0288d1;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            font-weight: bold;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        table.data-table th, table.data-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        table.data-table th {
+            background-color: #f0f4f8;
+            color: #004d40;
+        }
+        .output-box {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 8.5pt;
+            line-height: 1.3;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 9pt;
+            color: #777;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+    <div class="evaluation-badge">PROJECT EVALUATION 2: VERSION 2 &amp; ENHANCED FEATURES</div>
+    <h1>Student Record Management System</h1>
+    <h2>Version 2 System Implementation Report</h2>
+    <div class="subtitle">Enrollment Module, Marks Assessment, Auto-Percentage Engine, Multi-Criteria Search &amp; Git Release</div>
+
+    <table class="meta-box">
+        <tr>
+            <th>Project Title</th>
+            <td>Student Record Management System (SRMS)</td>
+        </tr>
+        <tr>
+            <th>Course / Assignment</th>
+            <td>Project Evaluation 2 (Demo of Version 2 &amp; Code Push)</td>
+        </tr>
+        <tr>
+            <th>Grading Rubric</th>
+            <td>Graded Assignment (Marks: 0 - 4)</td>
+        </tr>
+        <tr>
+            <th>Prepared by (Team)</th>
+            <td>
+                1. <strong>Shubham Gupta</strong> (Roll No: <strong>45</strong>)<br>
+                2. <strong>Swapnil Yadav</strong> (Roll No: <strong>46</strong>)
+            </td>
+        </tr>
+        <tr>
+            <th>Implementation Language</th>
+            <td>C++ (Standard C++17)</td>
+        </tr>
+        <tr>
+            <th>Git Milestone Tag</th>
+            <td><code>v2.0-enhanced</code> (Commit: <code>c7ca262</code>)</td>
+        </tr>
+        <tr>
+            <th>GitHub Repository</th>
+            <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM</code></td>
+        </tr>
+    </table>
+    <div style="margin-top: 30px; font-size: 10pt; color: #444;">
+        Academic Project Submission &bull; 2024 &bull; Computer Science &amp; Engineering
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 1 -->
+<h2 class="section-title">1. Evaluation 2 Scope &amp; Milestone Deliverables</h2>
+<p>
+    Following the successful completion of the MVP in Evaluation 1, <strong>Project Evaluation 2</strong> advances the architecture
+    by introducing the academic relationship layers: linking students to degree programs across academic terms (Enrollment),
+    evaluating subject assessment marks with automated percentage calculations (Marks), and enabling flexible multi-criteria search.
+</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Feature / Module</th>
+            <th>Requirement Specification</th>
+            <th>Evaluation 2 Implementation Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Enrollment Management</strong></td>
+            <td>Link student to academic course, year, and semester</td>
+            <td><span class="badge">Delivered</span> <code>Enrollment.h / Enrollment.cpp</code> with Foreign Key checks on student &amp; course.</td>
+        </tr>
+        <tr>
+            <td><strong>Marks &amp; Assessment Engine</strong></td>
+            <td>Store scores, validate boundaries, and auto-compute percentage</td>
+            <td><span class="badge">Delivered</span> <code>Mark.h / Mark.cpp</code> validating 0 &le; score &le; maxScore (TC-06).</td>
+        </tr>
+        <tr>
+            <td><strong>Advanced Search Module</strong></td>
+            <td>Multi-criteria lookup across ID, Name, and Course Code</td>
+            <td><span class="badge">Delivered</span> Case-insensitive sub-string search over all cached entities.</td>
+        </tr>
+        <tr>
+            <td><strong>Profile Update Engine</strong></td>
+            <td>Edit contact phone and address with live persistence</td>
+            <td><span class="badge">Delivered</span> TC-05 verification: updates immediately reflected in database.</td>
+        </tr>
+        <tr>
+            <td><strong>Multi-Table Persistence</strong></td>
+            <td>Relational text storage for 5 entities</td>
+            <td><span class="badge">Delivered</span> Synchronized stores for Users, Students, Courses, Enrollments, and Marks.</td>
+        </tr>
+        <tr>
+            <td><strong>Git Repository Release</strong></td>
+            <td>Commit and push Version 2 with formal release tag</td>
+            <td><span class="badge">Delivered</span> Tag <code>v2.0-enhanced</code> live on GitHub.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- SECTION 2 -->
+<h2 class="section-title">2. Relational Model &amp; Referential Integrity</h2>
+<p>
+    In Version 2, the relational model expands from standalone entity tables into an interconnected relational schema:
+</p>
+<ul>
+    <li><strong>STUDENT (1) &mdash; ENROLLMENT (N):</strong> A student can register for multiple academic terms. Foreign key check guarantees non-existent students cannot be enrolled.</li>
+    <li><strong>COURSE (1) &mdash; ENROLLMENT (N):</strong> Courses contain multiple term enrollments. Foreign key check guarantees students are only enrolled in valid course codes.</li>
+    <li><strong>STUDENT (1) &mdash; MARKS (N):</strong> Marks entries strictly require an existing parent student ID.</li>
+    <li><strong>CHECK Constraint:</strong> $0 \le \text{score} \le \text{max\_score}$ enforced defensively before persistence.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- SECTION 3: CODE -->
+<h2 class="section-title">3. Evaluation 2 Complete C++ Source Code</h2>
+
+<h3 class="file-title">File 1: include/Enrollment.h (New in Evaluation 2)</h3>
+<pre>
+#ifndef ENROLLMENT_H
+#define ENROLLMENT_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include "Utils.h"
+
+class Enrollment {
+private:
+    std::string enrollmentId;
+    std::string studentId;
+    std::string courseId;
+    std::string academicYear;
+    std::string semester;
+    std::string enrollmentDate;
+
+public:
+    Enrollment();
+    Enrollment(const std::string&amp; eId, const std::string&amp; sId, const std::string&amp; cId,
+               const std::string&amp; yr, const std::string&amp; sem, const std::string&amp; date);
+
+    std::string getEnrollmentId() const;
+    std::string getStudentId() const;
+    std::string getCourseId() const;
+    std::string getAcademicYear() const;
+    std::string getSemester() const;
+    std::string getEnrollmentDate() const;
+
+    void enrollStudent(const std::string&amp; sId, const std::string&amp; cId,
+                       const std::string&amp; yr, const std::string&amp; sem, const std::string&amp; date);
+    void changeCourse(const std::string&amp; newCourseId);
+    std::string getEnrollmentDetails() const;
+
+    std::string serialize() const;
+    static Enrollment deserialize(const std::string&amp; line);
+};
+
+#endif // ENROLLMENT_H
+</pre>
+
+<h3 class="file-title">File 2: src/Enrollment.cpp (New in Evaluation 2)</h3>
+<pre>
+#include "../include/Enrollment.h"
+#include &lt;sstream&gt;
+
+Enrollment::Enrollment()
+    : enrollmentId(""), studentId(""), courseId(""), academicYear(""), semester(""), enrollmentDate("") {}
+
+Enrollment::Enrollment(const std::string&amp; eId, const std::string&amp; sId, const std::string&amp; cId,
+                       const std::string&amp; yr, const std::string&amp; sem, const std::string&amp; date)
+    : enrollmentId(eId), studentId(sId), courseId(cId), academicYear(yr), semester(sem), enrollmentDate(date) {}
+
+std::string Enrollment::getEnrollmentId() const { return enrollmentId; }
+std::string Enrollment::getStudentId() const { return studentId; }
+std::string Enrollment::getCourseId() const { return courseId; }
+std::string Enrollment::getAcademicYear() const { return academicYear; }
+std::string Enrollment::getSemester() const { return semester; }
+std::string Enrollment::getEnrollmentDate() const { return enrollmentDate; }
+
+void Enrollment::enrollStudent(const std::string&amp; sId, const std::string&amp; cId,
+                               const std::string&amp; yr, const std::string&amp; sem, const std::string&amp; date) {
+    studentId = sId;
+    courseId = cId;
+    academicYear = yr;
+    semester = sem;
+    enrollmentDate = date;
+}
+
+void Enrollment::changeCourse(const std::string&amp; newCourseId) {
+    courseId = newCourseId;
+}
+
+std::string Enrollment::getEnrollmentDetails() const {
+    std::ostringstream oss;
+    oss &lt;&lt; "Enrollment ID: " &lt;&lt; enrollmentId
+        &lt;&lt; " | Student: " &lt;&lt; studentId
+        &lt;&lt; " | Course: " &lt;&lt; courseId
+        &lt;&lt; " | Year: " &lt;&lt; academicYear
+        &lt;&lt; " | Sem: " &lt;&lt; semester
+        &lt;&lt; " | Date: " &lt;&lt; enrollmentDate;
+    return oss.str();
+}
+
+std::string Enrollment::serialize() const {
+    return enrollmentId + "|" + studentId + "|" + courseId + "|" +
+           academicYear + "|" + semester + "|" + enrollmentDate;
+}
+
+Enrollment Enrollment::deserialize(const std::string&amp; line) {
+    std::vector&lt;std::string&gt; parts = Utils::split(line, '|');
+    if (parts.size() &gt;= 6) {
+        return Enrollment(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
+    }
+    return Enrollment();
+}
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 3: include/Mark.h (New in Evaluation 2)</h3>
+<pre>
+#ifndef MARK_H
+#define MARK_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include "Utils.h"
+
+class Mark {
+private:
+    std::string markId;
+    std::string studentId;
+    std::string subject;
+    std::string assessment; // e.g. "Mid-Term", "Final Exam", "Assignment"
+    double score;
+    double maxScore;
+
+public:
+    Mark();
+    Mark(const std::string&amp; mId, const std::string&amp; sId, const std::string&amp; sub,
+         const std::string&amp; assess, double sc, double maxSc);
+
+    std::string getMarkId() const;
+    std::string getStudentId() const;
+    std::string getSubject() const;
+    std::string getAssessment() const;
+    double getScore() const;
+    double getMaxScore() const;
+
+    bool validateScore(std::string&amp; errorMessage) const;
+    double calculatePercentage() const;
+
+    std::string serialize() const;
+    static Mark deserialize(const std::string&amp; line);
+};
+
+#endif // MARK_H
+</pre>
+
+<h3 class="file-title">File 4: src/Mark.cpp (New in Evaluation 2)</h3>
+<pre>
+#include "../include/Mark.h"
+#include &lt;sstream&gt;
+
+Mark::Mark() : markId(""), studentId(""), subject(""), assessment(""), score(0.0), maxScore(100.0) {}
+
+Mark::Mark(const std::string&amp; mId, const std::string&amp; sId, const std::string&amp; sub,
+           const std::string&amp; assess, double sc, double maxSc)
+    : markId(mId), studentId(sId), subject(sub), assessment(assess), score(sc), maxScore(maxSc) {}
+
+std::string Mark::getMarkId() const { return markId; }
+std::string Mark::getStudentId() const { return studentId; }
+std::string Mark::getSubject() const { return subject; }
+std::string Mark::getAssessment() const { return assessment; }
+double Mark::getScore() const { return score; }
+double Mark::getMaxScore() const { return maxScore; }
+
+bool Mark::validateScore(std::string&amp; errorMessage) const {
+    if (Utils::trim(markId).empty()) {
+        errorMessage = "Validation Error: Mark ID cannot be empty.";
+        return false;
+    }
+    if (Utils::trim(studentId).empty()) {
+        errorMessage = "Validation Error: Student ID cannot be empty.";
+        return false;
+    }
+    if (Utils::trim(subject).empty()) {
+        errorMessage = "Validation Error: Subject cannot be empty.";
+        return false;
+    }
+    if (maxScore &lt;= 0.0) {
+        errorMessage = "Validation Error: Maximum score must be greater than zero.";
+        return false;
+    }
+    // TC-06: 0 &lt;= score &lt;= maxScore
+    if (score &lt; 0.0) {
+        errorMessage = "Validation Error: Score cannot be negative.";
+        return false;
+    }
+    if (score &gt; maxScore) {
+        std::ostringstream oss;
+        oss &lt;&lt; "Validation Error: Score (" &lt;&lt; score &lt;&lt; ") exceeds maximum allowed score (" &lt;&lt; maxScore &lt;&lt; ").";
+        errorMessage = oss.str();
+        return false;
+    }
+    return true;
+}
+
+double Mark::calculatePercentage() const {
+    if (maxScore &lt;= 0.0) return 0.0;
+    return (score / maxScore) * 100.0;
+}
+
+std::string Mark::serialize() const {
+    return markId + "|" + studentId + "|" + subject + "|" + assessment + "|" +
+           std::to_string(score) + "|" + std::to_string(maxScore);
+}
+
+Mark Mark::deserialize(const std::string&amp; line) {
+    std::vector&lt;std::string&gt; parts = Utils::split(line, '|');
+    if (parts.size() &gt;= 6) {
+        double sc = 0.0;
+        double mx = 100.0;
+        try {
+            sc = std::stod(parts[4]);
+            mx = std::stod(parts[5]);
+        } catch (...) {}
+        return Mark(parts[0], parts[1], parts[2], parts[3], sc, mx);
+    }
+    return Mark();
+}
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 5: include/StudentRepository.h (Evaluation 2 Version)</h3>
+<pre>
+#ifndef STUDENT_REPOSITORY_H
+#define STUDENT_REPOSITORY_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;memory&gt;
+#include "Student.h"
+#include "Course.h"
+#include "User.h"
+#include "Enrollment.h"
+#include "Mark.h"
+
+class StudentRepository {
+private:
+    std::string studentsFilePath;
+    std::string coursesFilePath;
+    std::string usersFilePath;
+    std::string enrollmentsFilePath;
+    std::string marksFilePath;
+
+    std::vector&lt;Student&gt; studentsCache;
+    std::vector&lt;Course&gt; coursesCache;
+    std::vector&lt;User&gt; usersCache;
+    std::vector&lt;Enrollment&gt; enrollmentsCache;
+    std::vector&lt;Mark&gt; marksCache;
+
+    void loadStudents();
+    void saveStudents();
+    void loadCourses();
+    void saveCourses();
+    void loadUsers();
+    void saveUsers();
+    void loadEnrollments();
+    void saveEnrollments();
+    void loadMarks();
+    void saveMarks();
+
+public:
+    StudentRepository(const std::string&amp; dataDir = "data");
+
+    // Student CRUD operations
+    bool add(const Student&amp; student, std::string&amp; errorMessage);
+    Student* findById(const std::string&amp; studentId);
+    std::vector&lt;Student&gt; search(const std::string&amp; keyword);
+    bool update(const Student&amp; student, std::string&amp; errorMessage);
+    bool deactivate(const std::string&amp; studentId, std::string&amp; errorMessage);
+    std::vector&lt;Student&gt; getAllStudents(bool includeInactive = true);
+
+    // Course operations
+    bool addCourse(const Course&amp; course, std::string&amp; errorMessage);
+    Course* findCourseById(const std::string&amp; courseId);
+    std::vector&lt;Course&gt; getAllCourses();
+
+    // User operations
+    bool addUser(const User&amp; user, std::string&amp; errorMessage);
+    User* findUserByUsername(const std::string&amp; username);
+    std::vector&lt;User&gt; getAllUsers();
+
+    // Enrollment operations (New in Eval 2)
+    bool addEnrollment(const Enrollment&amp; enrollment, std::string&amp; errorMessage);
+    std::vector&lt;Enrollment&gt; getEnrollmentsByStudentId(const std::string&amp; studentId);
+    std::vector&lt;Enrollment&gt; getAllEnrollments();
+
+    // Marks operations (New in Eval 2)
+    bool addMark(const Mark&amp; mark, std::string&amp; errorMessage);
+    std::vector&lt;Mark&gt; getMarksByStudentId(const std::string&amp; studentId);
+    std::vector&lt;Mark&gt; getAllMarks();
+
+    void seedDefaultsIfEmpty();
+};
+
+#endif // STUDENT_REPOSITORY_H
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 6: src/StudentRepository.cpp (Evaluation 2 Methods Extract)</h3>
+<pre>
+// Referential integrity enforcement in Version 2:
+bool StudentRepository::addEnrollment(const Enrollment&amp; enrollment, std::string&amp; errorMessage) {
+    // Foreign Key Check: Student must exist
+    Student* student = findById(enrollment.getStudentId());
+    if (!student) {
+        errorMessage = "Foreign Key Error: Student ID '" + enrollment.getStudentId() + "' does not exist.";
+        return false;
+    }
+
+    // Foreign Key Check: Course must exist
+    Course* course = findCourseById(enrollment.getCourseId());
+    if (!course) {
+        errorMessage = "Foreign Key Error: Course ID '" + enrollment.getCourseId() + "' does not exist.";
+        return false;
+    }
+
+    enrollmentsCache.push_back(enrollment);
+    saveEnrollments();
+    return true;
+}
+
+bool StudentRepository::addMark(const Mark&amp; mark, std::string&amp; errorMessage) {
+    // Score Range Validation (TC-06)
+    if (!mark.validateScore(errorMessage)) {
+        return false;
+    }
+
+    // Foreign Key Check: Student must exist
+    Student* student = findById(mark.getStudentId());
+    if (!student) {
+        errorMessage = "Foreign Key Error: Cannot enter mark. Student ID '" + mark.getStudentId() + "' does not exist.";
+        return false;
+    }
+
+    marksCache.push_back(mark);
+    saveMarks();
+    return true;
+}
+
+std::vector&lt;Mark&gt; StudentRepository::getMarksByStudentId(const std::string&amp; studentId) {
+    std::vector&lt;Mark&gt; results;
+    std::string upperId = Utils::toUpper(Utils::trim(studentId));
+    for (const auto&amp; m : marksCache) {
+        if (Utils::toUpper(m.getStudentId()) == upperId) {
+            results.push_back(m);
+        }
+    }
+    return results;
+}
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 7: src/main.cpp (Evaluation 2 Dashboard Extract)</h3>
+<pre>
+// Main operations loop for Evaluation 2 Enhanced Version:
+int main() {
+    StudentRepository repo("data");
+    User* currentUser = nullptr;
+
+    while (true) {
+        printHeader();
+
+        if (currentUser == nullptr) {
+            // Authentication menu (Login / Credentials / Exit)
+            // ...
+        } else {
+            // Evaluation 2 Dashboard with 6 Operations
+            std::cout &lt;&lt; "\n&gt;&gt;&gt; DASHBOARD [User: " &lt;&lt; currentUser-&gt;getUsername()
+                      &lt;&lt; " | Role: " &lt;&lt; currentUser-&gt;getRole() &lt;&lt; "] &lt;&lt;&lt;\n";
+            std::cout &lt;&lt; "1. Student Management (Add, View, Update Profile)\n";
+            std::cout &lt;&lt; "2. Advanced Multi-Criteria Search\n";
+            std::cout &lt;&lt; "3. Course Management (Add, View Courses)\n";
+            std::cout &lt;&lt; "4. Enrollment Module (Enroll Student to Course/Term)\n";
+            std::cout &lt;&lt; "5. Marks Module (Record Marks &amp; View Percentages)\n";
+            std::cout &lt;&lt; "6. Logout\n";
+            std::cout &lt;&lt; "0. Exit Application\n";
+            std::cout &lt;&lt; "Select Operation: ";
+            
+            // Handles submenus for:
+            // - Updating Student Profile (TC-05)
+            // - Multi-criteria keyword search across ID, Name, and Course
+            // - Registering term enrollments (Foreign Key validation)
+            // - Scoring assessments with automated percentage calculation &amp; boundary enforcement (TC-06)
+        }
+    }
+    return 0;
+}
+</pre>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4: DATA PERSISTENCE FILES -->
+<h2 class="section-title">4. Version 2 Multi-Table Persistent Storage</h2>
+<p>
+    Evaluation 2 manages 5 persistent relational datasets under the <code>data/</code> directory:
+</p>
+
+<h3 class="file-title">data/enrollments.txt</h3>
+<pre>
+E001|S101|CS101|2024-2025|Semester 5|2024-07-15
+E002|S102|CS101|2024-2025|Semester 5|2024-07-15
+E003|S103|IT102|2024-2025|Semester 5|2024-07-16
+</pre>
+
+<h3 class="file-title">data/marks.txt</h3>
+<pre>
+M001|S101|Data Structures &amp; Algorithms|Final Exam|92.500000|100.000000
+M002|S101|Database Management Systems|Final Exam|88.000000|100.000000
+M003|S101|Computer Networks|Mid-Term|46.000000|50.000000
+M004|S102|Data Structures &amp; Algorithms|Final Exam|89.000000|100.000000
+M005|S102|Database Management Systems|Final Exam|91.500000|100.000000
+M006|S102|Operating Systems|Mid-Term|44.000000|50.000000
+M007|S103|Web Development|Final Exam|85.000000|100.000000
+M008|S103|Software Engineering|Final Exam|82.000000|100.000000
+</pre>
+
+<!-- SECTION 5: COMPILATION & EXECUTION -->
+<h2 class="section-title">5. Compilation and Execution Guide</h2>
+<p>
+    Evaluation 2 compiles with standard C++17 linking the newly introduced modules:
+</p>
+<pre>
+# Compilation Command for Version 2 Binary
+g++ -std=c++17 -Wall -Iinclude src/main.cpp src/User.cpp src/Course.cpp src/Student.cpp src/Enrollment.cpp src/Mark.cpp src/StudentRepository.cpp -o srms_v2.exe
+
+# Execute Application
+.\srms_v2.exe
+</pre>
+
+<!-- SECTION 6: EXECUTION OUTPUTS -->
+<h2 class="section-title">6. Evaluation 2 Execution Screenshots &amp; Validation Outputs</h2>
+
+<p><strong>Screen 1: Invalid Marks Rejection (TC-06 Range Enforcement):</strong></p>
+<div class="output-box">
+--- MARKS MANAGEMENT &amp; ASSESSMENT ---
+1. Record New Assessment Mark
+2. View Marks for a Student
+3. View All Assessment Records
+Select Option: 1
+Enter Mark ID (e.g. M009): M010
+Enter Student ID: S101
+Enter Subject Name: Physics
+Enter Assessment Type (Mid-Term, Final Exam, Quiz): Quiz
+Enter Max Score Allowed (e.g. 100 or 50): 50
+Enter Score Obtained: 65
+
+[VALIDATION ERROR] Validation Error: Score (65) exceeds maximum allowed score (50). Record not saved.
+</div>
+
+<p><strong>Screen 2: Student Profile Update (TC-05 Live Reflection):</strong></p>
+<div class="output-box">
+&gt;&gt;&gt; UPDATE STUDENT PROFILE &lt;&lt;&lt;
+Enter Student ID to update: S101
+Editing profile for: Shubham Gupta (S101)
+Current Phone: 9876543210 -&gt; Enter new phone: 9988776655
+Current Address: Block A, Campus Hostel -&gt; Enter new address: New Campus Wing, Room 14
+
+[SUCCESS] Profile updated successfully!
+Updated Details:
+  Phone:   9988776655
+  Address: New Campus Wing, Room 14
+</div>
+
+<p><strong>Screen 3: Multi-Criteria Search Result (Keyword Query):</strong></p>
+<div class="output-box">
+--- ADVANCED MULTI-CRITERIA SEARCH ---
+Enter search keyword (Student ID, Name, or Course): CS101
+
+Found 2 Matching Record(s):
+-----------------------------------------------------------------
+ID: S101 | Name: Shubham Gupta | Course: CS101 | Phone: 9988776655 | Status: Active
+ID: S102 | Name: Swapnil Yadav | Course: CS101 | Phone: 9876543211 | Status: Active
+-----------------------------------------------------------------
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 7: GIT EVIDENCE -->
+<h2 class="section-title">7. Git Repository Commit &amp; Release Tag Evidence</h2>
+<p>
+    In compliance with Evaluation 2 submission rules (<em>"Demo of version 2 and code push in git repository"</em>), 
+    the code was committed and tagged with <strong><code>v2.0-enhanced</code></strong>:
+</p>
+
+<table class="data-table">
+    <tr>
+        <th>Repository URL</th>
+        <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM</code></td>
+    </tr>
+    <tr>
+        <th>Git Release Tag</th>
+        <td><code>v2.0-enhanced</code></td>
+    </tr>
+    <tr>
+        <th>Direct Release Link</th>
+        <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM/tree/v2.0-enhanced</code></td>
+    </tr>
+    <tr>
+        <th>Commit Hash</th>
+        <td><code>c7ca262</code></td>
+    </tr>
+    <tr>
+        <th>Commit Message</th>
+        <td><code>Evaluation 2: Version 2 - Enrolment, Marks Management, Advanced Search &amp; Data Validation</code></td>
+    </tr>
+</table>
+
+<div class="output-box">
+$ git log --oneline --decorate
+c7ca262 (tag: v2.0-enhanced) Evaluation 2: Version 2 - Enrolment, Marks Management, Advanced Search &amp; Data Validation
+d2f24e7 (tag: v1.0-mvp) Evaluation 1: Demo of First cut / MVP version (Student &amp; Course Management, Login, Search, Persistence)
+
+$ git tag -l
+v1.0-mvp
+v2.0-enhanced
+</div>
+
+<div class="footer-note">
+    Student Record Management System (SRMS) &bull; Evaluation 2 Code Report &bull; Authors: Shubham Gupta (45) &amp; Swapnil Yadav (46)
+</div>
+
+</body>
+</html>
