@@ -130,6 +130,7 @@ int main() {
                 std::cout << "3. Update Student Profile (Phone, Address, Course)\n";
                 std::cout << "4. Soft Deactivate Student Profile (Preserve Academic History)\n";
                 std::cout << "5. Reactivate Student Profile\n";
+                std::cout << "6. Delete Student Record Permanently [Admin Only]\n";
                 std::cout << "Select Option: ";
                 int sOp = -1;
                 std::cin >> sOp;
@@ -257,6 +258,31 @@ int main() {
                     } else {
                         std::cout << "\n[ERROR] " << rErr << "\n";
                     }
+                } else if (sOp == 6) {
+                    // Hard Delete (Admin Only)
+                    if (currentUser->getRole() != "Admin") {
+                        std::cout << "\n[PERMISSION DENIED] Only Administrators can permanently delete student records.\n";
+                    } else {
+                        std::cout << "\n>>> PERMANENT RECORD DELETION [Admin Only] <<<\n";
+                        std::cout << "Enter Student ID to delete: ";
+                        std::string delId;
+                        std::getline(std::cin, delId);
+                        delId = Utils::trim(delId);
+
+                        std::cout << "Are you sure you want to permanently delete student " << delId << "? (y/N): ";
+                        std::string confirm;
+                        std::getline(std::cin, confirm);
+                        if (confirm == "y" || confirm == "Y") {
+                            std::string delErr;
+                            if (repo.remove(delId, delErr)) {
+                                std::cout << "\n[SUCCESS] Student record " << delId << " permanently removed from database.\n";
+                            } else {
+                                std::cout << "\n[ERROR] " << delErr << "\n";
+                            }
+                        } else {
+                            std::cout << "\n[CANCELLED] Deletion cancelled by user.\n";
+                        }
+                    }
                 }
             } else if (op == 2) {
                 // Advanced search
@@ -335,6 +361,7 @@ int main() {
                 std::cout << "1. Enroll Student to Course / Term\n";
                 std::cout << "2. View All Enrollments\n";
                 std::cout << "3. View Enrollment History by Student ID\n";
+                std::cout << "4. Change Student Enrolled Course\n";
                 std::cout << "Select Option: ";
                 int eOp = -1;
                 std::cin >> eOp;
@@ -393,6 +420,35 @@ int main() {
                         std::cout << "\nEnrollment Records for Student " << sId << ":\n";
                         for (const auto& e : list) {
                             std::cout << "  - " << e.getEnrollmentDetails() << "\n";
+                        }
+                    }
+                } else if (eOp == 4) {
+                    // Change enrolled course
+                    std::cout << "\n>>> CHANGE STUDENT ENROLLED COURSE <<<\n";
+                    std::cout << "Enter Student ID: ";
+                    std::string sId;
+                    std::getline(std::cin, sId);
+                    Student* s = repo.findById(sId);
+                    if (!s) {
+                        std::cout << "\n[ERROR] Student ID '" << sId << "' not found.\n";
+                    } else {
+                        std::cout << "Current Student Course: " << s->getCourseId() << "\n";
+                        std::cout << "Enter New Course ID: ";
+                        std::string newCId;
+                        std::getline(std::cin, newCId);
+                        newCId = Utils::trim(newCId);
+
+                        Course* c = repo.findCourseById(newCId);
+                        if (!c) {
+                            std::cout << "\n[ERROR] Course ID '" << newCId << "' does not exist in course catalog.\n";
+                        } else {
+                            s->setCourseId(newCId);
+                            std::string uErr;
+                            if (repo.update(*s, uErr)) {
+                                std::cout << "\n[SUCCESS] Student " << sId << " course successfully updated to: " << newCId << " (" << c->getCourseName() << ")!\n";
+                            } else {
+                                std::cout << "\n[ERROR] " << uErr << "\n";
+                            }
                         }
                     }
                 }
