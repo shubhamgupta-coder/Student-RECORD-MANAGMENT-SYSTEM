@@ -1,0 +1,8 @@
+M001|S101|Data Structures & Algorithms|Final Exam|92.500000|100.000000
+M002|S101|Database Management Systems|Final Exam|88.000000|100.000000
+M003|S101|Computer Networks|Mid-Term|46.000000|50.000000
+M004|S102|Data Structures & Algorithms|Final Exam|89.000000|100.000000
+M005|S102|Database Management Systems|Final Exam|91.500000|100.000000
+M006|S102|Operating Systems|Mid-Term|44.000000|50.000000
+M007|S103|Web Development|Final Exam|85.000000|100.000000
+M008|S103|Software Engineering|Final Exam|82.000000|100.000000

@@ -7,16 +7,22 @@
 #include "Student.h"
 #include "Course.h"
 #include "User.h"
+#include "Enrollment.h"
+#include "Mark.h"
 
 class StudentRepository {
 private:
     std::string studentsFilePath;
     std::string coursesFilePath;
     std::string usersFilePath;
+    std::string enrollmentsFilePath;
+    std::string marksFilePath;
 
     std::vector<Student> studentsCache;
     std::vector<Course> coursesCache;
     std::vector<User> usersCache;
+    std::vector<Enrollment> enrollmentsCache;
+    std::vector<Mark> marksCache;
 
     void loadStudents();
     void saveStudents();
@@ -26,6 +32,12 @@ private:
 
     void loadUsers();
     void saveUsers();
+
+    void loadEnrollments();
+    void saveEnrollments();
+
+    void loadMarks();
+    void saveMarks();
 
 public:
     StudentRepository(const std::string& dataDir = "data");
@@ -47,6 +59,16 @@ public:
     bool addUser(const User& user, std::string& errorMessage);
     User* findUserByUsername(const std::string& username);
     std::vector<User> getAllUsers();
+
+    // Enrollment operations
+    bool addEnrollment(const Enrollment& enrollment, std::string& errorMessage);
+    std::vector<Enrollment> getEnrollmentsByStudentId(const std::string& studentId);
+    std::vector<Enrollment> getAllEnrollments();
+
+    // Marks operations
+    bool addMark(const Mark& mark, std::string& errorMessage);
+    std::vector<Mark> getMarksByStudentId(const std::string& studentId);
+    std::vector<Mark> getAllMarks();
 
     // Seed defaults
     void seedDefaultsIfEmpty();

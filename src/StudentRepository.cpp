@@ -6,10 +6,14 @@
 StudentRepository::StudentRepository(const std::string& dataDir)
     : studentsFilePath(dataDir + "/students.txt"),
       coursesFilePath(dataDir + "/courses.txt"),
-      usersFilePath(dataDir + "/users.txt") {
+      usersFilePath(dataDir + "/users.txt"),
+      enrollmentsFilePath(dataDir + "/enrollments.txt"),
+      marksFilePath(dataDir + "/marks.txt") {
     loadUsers();
     loadCourses();
     loadStudents();
+    loadEnrollments();
+    loadMarks();
     seedDefaultsIfEmpty();
 }
 
@@ -82,6 +86,52 @@ void StudentRepository::saveStudents() {
     outFile.close();
 }
 
+void StudentRepository::loadEnrollments() {
+    enrollmentsCache.clear();
+    std::ifstream inFile(enrollmentsFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() && line[0] != '#') {
+            enrollmentsCache.push_back(Enrollment::deserialize(line));
+        }
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveEnrollments() {
+    std::ofstream outFile(enrollmentsFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto& e : enrollmentsCache) {
+        outFile << e.serialize() << "\n";
+    }
+    outFile.close();
+}
+
+void StudentRepository::loadMarks() {
+    marksCache.clear();
+    std::ifstream inFile(marksFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() && line[0] != '#') {
+            marksCache.push_back(Mark::deserialize(line));
+        }
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveMarks() {
+    std::ofstream outFile(marksFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto& m : marksCache) {
+        outFile << m.serialize() << "\n";
+    }
+    outFile.close();
+}
+
 void StudentRepository::seedDefaultsIfEmpty() {
     // Seed default users if empty
     if (usersCache.empty()) {
@@ -105,6 +155,29 @@ void StudentRepository::seedDefaultsIfEmpty() {
         studentsCache.push_back(Student("S102", "Swapnil Yadav", "2003-08-22", "swapnil@univ.edu", "9876543211", "Block B, Campus Hostel", "CS101", "Active"));
         studentsCache.push_back(Student("S103", "Aarav Sharma", "2003-01-10", "aarav@univ.edu", "9876543212", "Green Park, City", "IT102", "Active"));
         saveStudents();
+    }
+
+    // Seed default enrollments if empty
+    if (enrollmentsCache.empty()) {
+        enrollmentsCache.push_back(Enrollment("E001", "S101", "CS101", "2024-2025", "Semester 5", "2024-07-15"));
+        enrollmentsCache.push_back(Enrollment("E002", "S102", "CS101", "2024-2025", "Semester 5", "2024-07-15"));
+        enrollmentsCache.push_back(Enrollment("E003", "S103", "IT102", "2024-2025", "Semester 5", "2024-07-16"));
+        saveEnrollments();
+    }
+
+    // Seed default marks if empty
+    if (marksCache.empty()) {
+        marksCache.push_back(Mark("M001", "S101", "Data Structures & Algorithms", "Final Exam", 92.5, 100.0));
+        marksCache.push_back(Mark("M002", "S101", "Database Management Systems", "Final Exam", 88.0, 100.0));
+        marksCache.push_back(Mark("M003", "S101", "Computer Networks", "Mid-Term", 46.0, 50.0));
+
+        marksCache.push_back(Mark("M004", "S102", "Data Structures & Algorithms", "Final Exam", 89.0, 100.0));
+        marksCache.push_back(Mark("M005", "S102", "Database Management Systems", "Final Exam", 91.5, 100.0));
+        marksCache.push_back(Mark("M006", "S102", "Operating Systems", "Mid-Term", 44.0, 50.0));
+
+        marksCache.push_back(Mark("M007", "S103", "Web Development", "Final Exam", 85.0, 100.0));
+        marksCache.push_back(Mark("M008", "S103", "Software Engineering", "Final Exam", 82.0, 100.0));
+        saveMarks();
     }
 }
 
@@ -156,7 +229,7 @@ std::vector<Student> StudentRepository::search(const std::string& keyword) {
 
 bool StudentRepository::update(const Student& student, std::string& errorMessage) {
     for (auto& s : studentsCache) {
-        if (s.getStudentId() == student.getStudentId()) {
+        if (Utils::toUpper(s.getStudentId()) == Utils::toUpper(student.getStudentId())) {
             s = student;
             saveStudents();
             return true;
@@ -237,4 +310,72 @@ User* StudentRepository::findUserByUsername(const std::string& username) {
 
 std::vector<User> StudentRepository::getAllUsers() {
     return usersCache;
+}
+
+bool StudentRepository::addEnrollment(const Enrollment& enrollment, std::string& errorMessage) {
+    // Check Foreign Key: student_id must exist in Student table
+    Student* student = findById(enrollment.getStudentId());
+    if (!student) {
+        errorMessage = "Foreign Key Error: Student ID '" + enrollment.getStudentId() + "' does not exist.";
+        return false;
+    }
+
+    // Check Foreign Key: course_id must exist in Course table
+    Course* course = findCourseById(enrollment.getCourseId());
+    if (!course) {
+        errorMessage = "Foreign Key Error: Course ID '" + enrollment.getCourseId() + "' does not exist.";
+        return false;
+    }
+
+    enrollmentsCache.push_back(enrollment);
+    saveEnrollments();
+    return true;
+}
+
+std::vector<Enrollment> StudentRepository::getEnrollmentsByStudentId(const std::string& studentId) {
+    std::vector<Enrollment> results;
+    std::string upperId = Utils::toUpper(Utils::trim(studentId));
+    for (const auto& e : enrollmentsCache) {
+        if (Utils::toUpper(e.getStudentId()) == upperId) {
+            results.push_back(e);
+        }
+    }
+    return results;
+}
+
+std::vector<Enrollment> StudentRepository::getAllEnrollments() {
+    return enrollmentsCache;
+}
+
+bool StudentRepository::addMark(const Mark& mark, std::string& errorMessage) {
+    // Check validation of score
+    if (!mark.validateScore(errorMessage)) {
+        return false;
+    }
+
+    // Check Foreign Key: student_id must exist in Student table
+    Student* student = findById(mark.getStudentId());
+    if (!student) {
+        errorMessage = "Foreign Key Error: Cannot enter mark. Student ID '" + mark.getStudentId() + "' does not exist.";
+        return false;
+    }
+
+    marksCache.push_back(mark);
+    saveMarks();
+    return true;
+}
+
+std::vector<Mark> StudentRepository::getMarksByStudentId(const std::string& studentId) {
+    std::vector<Mark> results;
+    std::string upperId = Utils::toUpper(Utils::trim(studentId));
+    for (const auto& m : marksCache) {
+        if (Utils::toUpper(m.getStudentId()) == upperId) {
+            results.push_back(m);
+        }
+    }
+    return results;
+}
+
+std::vector<Mark> StudentRepository::getAllMarks() {
+    return marksCache;
 }
