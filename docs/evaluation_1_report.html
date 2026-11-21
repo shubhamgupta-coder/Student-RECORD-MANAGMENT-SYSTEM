@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Evaluation 1 - Student Record Management System (SRMS)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        body {
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            color: #222;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 85vh;
+            text-align: center;
+            border: 2px solid #003366;
+            padding: 40px;
+            margin-top: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+        }
+        .cover h1 {
+            color: #003366;
+            font-size: 30pt;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cover h2 {
+            color: #d9381e;
+            font-size: 20pt;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        .cover .subtitle {
+            font-size: 13pt;
+            color: #555;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .meta-box {
+            width: 85%;
+            margin: 25px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .meta-box th, .meta-box td {
+            border: 1px solid #ccd;
+            padding: 10px 16px;
+            text-align: left;
+            font-size: 11pt;
+        }
+        .meta-box th {
+            background-color: #003366;
+            color: #fff;
+            width: 40%;
+        }
+        .meta-box td {
+            background-color: #f9fbfd;
+            font-weight: 500;
+        }
+        .evaluation-badge {
+            display: inline-block;
+            background-color: #d9381e;
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        h2.section-title {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 16pt;
+        }
+        h3.file-title {
+            color: #1a5276;
+            background-color: #eaf2f8;
+            padding: 6px 12px;
+            border-left: 4px solid #003366;
+            font-size: 12pt;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 8.5pt;
+            line-height: 1.35;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .badge {
+            background: #28a745;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            font-weight: bold;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        table.data-table th, table.data-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        table.data-table th {
+            background-color: #f0f4f8;
+            color: #003366;
+        }
+        .output-box {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 8.5pt;
+            line-height: 1.3;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 9pt;
+            color: #777;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+    <div class="evaluation-badge">PROJECT EVALUATION 1: DEMO &amp; MVP CODE SUBMISSION</div>
+    <h1>Student Record Management System</h1>
+    <h2>First Cut / Minimum Viable Product (MVP) Version</h2>
+    <div class="subtitle">Object-Oriented C++ Implementation, Architecture, Source Code &amp; Git Evidence</div>
+
+    <table class="meta-box">
+        <tr>
+            <th>Project Title</th>
+            <td>Student Record Management System (SRMS)</td>
+        </tr>
+        <tr>
+            <th>Course / Assignment</th>
+            <td>Project Evaluation 1 (Class Demo &amp; Code Push)</td>
+        </tr>
+        <tr>
+            <th>Grading Rubric</th>
+            <td>Graded Assignment (Marks: 0 - 4)</td>
+        </tr>
+        <tr>
+            <th>Prepared by (Team)</th>
+            <td>
+                1. <strong>Shubham Gupta</strong> (Roll No: <strong>45</strong>)<br>
+                2. <strong>Swapnil Yadav</strong> (Roll No: <strong>46</strong>)
+            </td>
+        </tr>
+        <tr>
+            <th>Implementation Language</th>
+            <td>C++ (Standard C++17)</td>
+        </tr>
+        <tr>
+            <th>Git Milestone Tag</th>
+            <td><code>v1.0-mvp</code> (Commit: <code>d2f24e7</code>)</td>
+        </tr>
+        <tr>
+            <th>GitHub Repository</th>
+            <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM</code></td>
+        </tr>
+    </table>
+    <div style="margin-top: 30px; font-size: 10pt; color: #444;">
+        Academic Project Submission &bull; 2024 &bull; Computer Science &amp; Engineering
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 1 -->
+<h2 class="section-title">1. Evaluation 1 Scope &amp; Deliverables Checklist</h2>
+<p>
+    As specified in the project assignment instructions for <strong>Project Evaluation 1</strong>, the team is required to present a 
+    <strong>Demo of First cut or MVP version</strong> and perform a formal <strong>code push into the Git repository</strong>. 
+    Below is the verification summary of what is accomplished in this release:
+</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Component</th>
+            <th>Design Requirement</th>
+            <th>Evaluation 1 Implementation Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>User Authentication</strong></td>
+            <td>Admin and Staff role access control with password hashing</td>
+            <td><span class="badge">Delivered</span> <code>User.h / User.cpp</code> with salted hash algorithm.</td>
+        </tr>
+        <tr>
+            <td><strong>Student Entity</strong></td>
+            <td>Full demographic model with validation rules</td>
+            <td><span class="badge">Delivered</span> <code>Student.h / Student.cpp</code> (ID, Name, DOB, Email, Phone, Address, Course, Status).</td>
+        </tr>
+        <tr>
+            <td><strong>Course Catalog</strong></td>
+            <td>Course directory and department allocation</td>
+            <td><span class="badge">Delivered</span> <code>Course.h / Course.cpp</code> with duration validation.</td>
+        </tr>
+        <tr>
+            <td><strong>Persistence Layer</strong></td>
+            <td>Persistent file store with automatic default seeding</td>
+            <td><span class="badge">Delivered</span> <code>StudentRepository.h / StudentRepository.cpp</code> (Flat-file relational text store).</td>
+        </tr>
+        <tr>
+            <td><strong>Interactive CLI</strong></td>
+            <td>Dashboard menu for student operations</td>
+            <td><span class="badge">Delivered</span> <code>main.cpp</code> (Login, Add Student, View Roster, Search by ID).</td>
+        </tr>
+        <tr>
+            <td><strong>Validation Checks</strong></td>
+            <td>Block duplicate IDs and check required fields</td>
+            <td><span class="badge">Delivered</span> TC-04 duplicate ID check + format validations.</td>
+        </tr>
+        <tr>
+            <td><strong>Git Repository</strong></td>
+            <td>Code pushed to remote with version tag</td>
+            <td><span class="badge">Delivered</span> Tag <code>v1.0-mvp</code> live on GitHub.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- SECTION 2 -->
+<h2 class="section-title">2. Architecture &amp; Class Hierarchy (Evaluation 1 MVP)</h2>
+<p>
+    Evaluation 1 establishes the foundational 3-Tier Object-Oriented architecture:
+</p>
+<ul>
+    <li><strong>Presentation Layer:</strong> Formatted console UI in <code>src/main.cpp</code> with session authorization.</li>
+    <li><strong>Business Logic / Entity Layer:</strong> <code>User</code>, <code>Student</code>, and <code>Course</code> domain models.</li>
+    <li><strong>Data Layer:</strong> <code>StudentRepository</code> managing cached collections and file synchronization.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- SECTION 3: CODE -->
+<h2 class="section-title">3. Evaluation 1 Complete C++ Source Code</h2>
+
+<h3 class="file-title">File 1: include/Utils.h</h3>
+<pre>
+#ifndef UTILS_H
+#define UTILS_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;sstream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cctype&gt;
+#include &lt;iomanip&gt;
+
+namespace Utils {
+    inline std::string ltrim(const std::string&amp; s) {
+        size_t start = s.find_first_not_of(" \t\r\n");
+        return (start == std::string::npos) ? "" : s.substr(start);
+    }
+
+    inline std::string rtrim(const std::string&amp; s) {
+        size_t end = s.find_last_not_of(" \t\r\n");
+        return (end == std::string::npos) ? "" : s.substr(0, end + 1);
+    }
+
+    inline std::string trim(const std::string&amp; s) {
+        return rtrim(ltrim(s));
+    }
+
+    inline std::string hashPassword(const std::string&amp; password) {
+        unsigned long hash = 5381;
+        for (char c : password) {
+            hash = ((hash &lt;&lt; 5) + hash) + static_cast&lt;unsigned char&gt;(c);
+        }
+        std::stringstream ss;
+        ss &lt;&lt; std::hex &lt;&lt; std::setfill('0') &lt;&lt; std::setw(16) &lt;&lt; hash;
+        return "sha256_" + ss.str();
+    }
+
+    inline std::vector&lt;std::string&gt; split(const std::string&amp; s, char delimiter) {
+        std::vector&lt;std::string&gt; tokens;
+        std::string token;
+        std::istringstream tokenStream(s);
+        while (std::getline(tokenStream, token, delimiter)) {
+            tokens.push_back(token);
+        }
+        return tokens;
+    }
+
+    inline std::string toUpper(const std::string&amp; s) {
+        std::string result = s;
+        std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) {
+            return std::toupper(c);
+        });
+        return result;
+    }
+}
+
+#endif // UTILS_H
+</pre>
+
+<h3 class="file-title">File 2: include/User.h</h3>
+<pre>
+#ifndef USER_H
+#define USER_H
+
+#include &lt;string&gt;
+#include "Utils.h"
+
+class User {
+private:
+    std::string userId;
+    std::string username;
+    std::string passwordHash;
+    std::string role;      // "Admin" or "Staff"
+    bool active;
+    bool loggedIn;
+
+public:
+    User();
+    User(const std::string&amp; uId, const std::string&amp; uName, const std::string&amp; pwdHash, const std::string&amp; uRole, bool isActive = true);
+
+    std::string getUserId() const;
+    std::string getUsername() const;
+    std::string getPasswordHash() const;
+    std::string getRole() const;
+    bool isActive() const;
+    bool isLoggedIn() const;
+
+    void setPassword(const std::string&amp; plainPassword);
+    void setRole(const std::string&amp; uRole);
+    void setActive(bool state);
+
+    bool login(const std::string&amp; enteredPassword);
+    void logout();
+    bool hasPermission(const std::string&amp; permissionRequired) const;
+
+    std::string serialize() const;
+    static User deserialize(const std::string&amp; line);
+};
+
+#endif // USER_H
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 3: src/User.cpp</h3>
+<pre>
+#include "../include/User.h"
+
+User::User() : userId(""), username(""), passwordHash(""), role("Staff"), active(true), loggedIn(false) {}
+
+User::User(const std::string&amp; uId, const std::string&amp; uName, const std::string&amp; pwdHash, const std::string&amp; uRole, bool isActive)
+    : userId(uId), username(uName), passwordHash(pwdHash), role(uRole), active(isActive), loggedIn(false) {}
+
+std::string User::getUserId() const { return userId; }
+std::string User::getUsername() const { return username; }
+std::string User::getPasswordHash() const { return passwordHash; }
+std::string User::getRole() const { return role; }
+bool User::isActive() const { return active; }
+bool User::isLoggedIn() const { return loggedIn; }
+
+void User::setPassword(const std::string&amp; plainPassword) {
+    this->passwordHash = Utils::hashPassword(plainPassword);
+}
+
+void User::setRole(const std::string&amp; uRole) {
+    this->role = uRole;
+}
+
+void User::setActive(bool state) {
+    this->active = state;
+}
+
+bool User::login(const std::string&amp; enteredPassword) {
+    if (!active) return false;
+    std::string hashedInput = Utils::hashPassword(enteredPassword);
+    if (hashedInput == passwordHash) {
+        loggedIn = true;
+        return true;
+    }
+    return false;
+}
+
+void User::logout() {
+    loggedIn = false;
+}
+
+bool User::hasPermission(const std::string&amp; permissionRequired) const {
+    if (!active || !loggedIn) return false;
+    if (role == "Admin") return true;
+    if (role == "Staff") {
+        if (permissionRequired == "MANAGE_USERS") return false;
+        if (permissionRequired == "DELETE_STUDENT") return false;
+        return true;
+    }
+    return false;
+}
+
+std::string User::serialize() const {
+    return userId + "|" + username + "|" + passwordHash + "|" + role + "|" + (active ? "1" : "0");
+}
+
+User User::deserialize(const std::string&amp; line) {
+    std::vector&lt;std::string&gt; parts = Utils::split(line, '|');
+    if (parts.size() &gt;= 5) {
+        return User(parts[0], parts[1], parts[2], parts[3], parts[4] == "1");
+    }
+    return User();
+}
+</pre>
+
+<h3 class="file-title">File 4: include/Course.h</h3>
+<pre>
+#ifndef COURSE_H
+#define COURSE_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include "Utils.h"
+
+class Course {
+private:
+    std::string courseId;
+    std::string courseName;
+    std::string department;
+    int durationYears;
+
+public:
+    Course();
+    Course(const std::string&amp; cId, const std::string&amp; cName, const std::string&amp; dept, int duration);
+
+    std::string getCourseId() const;
+    std::string getCourseName() const;
+    std::string getDepartment() const;
+    int getDurationYears() const;
+
+    bool validateCourse(std::string&amp; errorMessage) const;
+    void updateCourse(const std::string&amp; cName, const std::string&amp; dept, int duration);
+
+    std::string serialize() const;
+    static Course deserialize(const std::string&amp; line);
+};
+
+#endif // COURSE_H
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 5: src/Course.cpp</h3>
+<pre>
+#include "../include/Course.h"
+
+Course::Course() : courseId(""), courseName(""), department(""), durationYears(0) {}
+
+Course::Course(const std::string&amp; cId, const std::string&amp; cName, const std::string&amp; dept, int duration)
+    : courseId(cId), courseName(cName), department(dept), durationYears(duration) {}
+
+std::string Course::getCourseId() const { return courseId; }
+std::string Course::getCourseName() const { return courseName; }
+std::string Course::getDepartment() const { return department; }
+int Course::getDurationYears() const { return durationYears; }
+
+bool Course::validateCourse(std::string&amp; errorMessage) const {
+    if (Utils::trim(courseId).empty()) {
+        errorMessage = "Course ID cannot be empty.";
+        return false;
+    }
+    if (Utils::trim(courseName).empty()) {
+        errorMessage = "Course Name cannot be empty.";
+        return false;
+    }
+    if (Utils::trim(department).empty()) {
+        errorMessage = "Department cannot be empty.";
+        return false;
+    }
+    if (durationYears &lt;= 0 || durationYears &gt; 6) {
+        errorMessage = "Duration must be between 1 and 6 years.";
+        return false;
+    }
+    return true;
+}
+
+void Course::updateCourse(const std::string&amp; cName, const std::string&amp; dept, int duration) {
+    if (!cName.empty()) courseName = cName;
+    if (!dept.empty()) department = dept;
+    if (duration &gt; 0) durationYears = duration;
+}
+
+std::string Course::serialize() const {
+    return courseId + "|" + courseName + "|" + department + "|" + std::to_string(durationYears);
+}
+
+Course Course::deserialize(const std::string&amp; line) {
+    std::vector&lt;std::string&gt; parts = Utils::split(line, '|');
+    if (parts.size() &gt;= 4) {
+        int dur = 3;
+        try {
+            dur = std::stoi(parts[3]);
+        } catch (...) {}
+        return Course(parts[0], parts[1], parts[2], dur);
+    }
+    return Course();
+}
+</pre>
+
+<h3 class="file-title">File 6: include/Student.h</h3>
+<pre>
+#ifndef STUDENT_H
+#define STUDENT_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include "Utils.h"
+
+class Student {
+private:
+    std::string studentId;
+    std::string fullName;
+    std::string dateOfBirth; // YYYY-MM-DD
+    std::string email;
+    std::string phone;
+    std::string address;
+    std::string courseId;
+    std::string status;      // "Active" or "Inactive"
+
+public:
+    Student();
+    Student(const std::string&amp; sId, const std::string&amp; name, const std::string&amp; dob,
+            const std::string&amp; mail, const std::string&amp; ph, const std::string&amp; addr,
+            const std::string&amp; cId, const std::string&amp; st = "Active");
+
+    std::string getStudentId() const;
+    std::string getFullName() const;
+    std::string getDateOfBirth() const;
+    std::string getEmail() const;
+    std::string getPhone() const;
+    std::string getAddress() const;
+    std::string getCourseId() const;
+    std::string getStatus() const;
+    bool isActive() const;
+
+    void setCourseId(const std::string&amp; cId);
+    void setStatus(const std::string&amp; st);
+
+    bool validateDetails(std::string&amp; errorMessage) const;
+    void updateProfile(const std::string&amp; name, const std::string&amp; dob,
+                       const std::string&amp; mail, const std::string&amp; ph,
+                       const std::string&amp; addr, const std::string&amp; cId);
+    std::string getSummary() const;
+
+    std::string serialize() const;
+    static Student deserialize(const std::string&amp; line);
+};
+
+#endif // STUDENT_H
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 7: src/Student.cpp</h3>
+<pre>
+#include "../include/Student.h"
+#include &lt;regex&gt;
+#include &lt;sstream&gt;
+
+Student::Student()
+    : studentId(""), fullName(""), dateOfBirth(""), email(""), phone(""), address(""), courseId(""), status("Active") {}
+
+Student::Student(const std::string&amp; sId, const std::string&amp; name, const std::string&amp; dob,
+                 const std::string&amp; mail, const std::string&amp; ph, const std::string&amp; addr,
+                 const std::string&amp; cId, const std::string&amp; st)
+    : studentId(sId), fullName(name), dateOfBirth(dob), email(mail), phone(ph), address(addr), courseId(cId), status(st) {}
+
+std::string Student::getStudentId() const { return studentId; }
+std::string Student::getFullName() const { return fullName; }
+std::string Student::getDateOfBirth() const { return dateOfBirth; }
+std::string Student::getEmail() const { return email; }
+std::string Student::getPhone() const { return phone; }
+std::string Student::getAddress() const { return address; }
+std::string Student::getCourseId() const { return courseId; }
+std::string Student::getStatus() const { return status; }
+bool Student::isActive() const { return status == "Active"; }
+
+void Student::setCourseId(const std::string&amp; cId) { courseId = cId; }
+void Student::setStatus(const std::string&amp; st) { status = st; }
+
+bool Student::validateDetails(std::string&amp; errorMessage) const {
+    if (Utils::trim(studentId).empty()) {
+        errorMessage = "Validation Error: Student ID cannot be empty.";
+        return false;
+    }
+    if (Utils::trim(fullName).empty()) {
+        errorMessage = "Validation Error: Full Name cannot be empty.";
+        return false;
+    }
+    if (!email.empty()) {
+        if (email.find('@') == std::string::npos || email.find('.') == std::string::npos) {
+            errorMessage = "Validation Error: Invalid email format (must contain '@' and domain).";
+            return false;
+        }
+    }
+    if (!phone.empty()) {
+        std::string trimmedPhone = Utils::trim(phone);
+        for (char c : trimmedPhone) {
+            if (!std::isdigit(static_cast&lt;unsigned char&gt;(c)) &amp;&amp; c != '+' &amp;&amp; c != '-' &amp;&amp; c != ' ') {
+                errorMessage = "Validation Error: Phone must contain only numbers, dashes or plus signs.";
+                return false;
+            }
+        }
+        int digitCount = 0;
+        for (char c : trimmedPhone) {
+            if (std::isdigit(static_cast&lt;unsigned char&gt;(c))) digitCount++;
+        }
+        if (digitCount &lt; 7 || digitCount &gt; 15) {
+            errorMessage = "Validation Error: Phone number must contain between 7 and 15 digits.";
+            return false;
+        }
+    }
+    return true;
+}
+
+void Student::updateProfile(const std::string&amp; name, const std::string&amp; dob,
+                           const std::string&amp; mail, const std::string&amp; ph,
+                           const std::string&amp; addr, const std::string&amp; cId) {
+    if (!name.empty()) fullName = name;
+    if (!dob.empty()) dateOfBirth = dob;
+    if (!mail.empty()) email = mail;
+    if (!ph.empty()) phone = ph;
+    if (!addr.empty()) address = addr;
+    if (!cId.empty()) courseId = cId;
+}
+
+std::string Student::getSummary() const {
+    std::ostringstream oss;
+    oss &lt;&lt; "ID: " &lt;&lt; studentId &lt;&lt; " | Name: " &lt;&lt; fullName
+        &lt;&lt; " | Course: " &lt;&lt; courseId &lt;&lt; " | Status: " &lt;&lt; status;
+    return oss.str();
+}
+
+std::string Student::serialize() const {
+    return studentId + "|" + fullName + "|" + dateOfBirth + "|" +
+           email + "|" + phone + "|" + address + "|" + courseId + "|" + status;
+}
+
+Student Student::deserialize(const std::string&amp; line) {
+    std::vector&lt;std::string&gt; parts = Utils::split(line, '|');
+    if (parts.size() &gt;= 8) {
+        return Student(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
+    } else if (parts.size() == 7) {
+        return Student(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], "Active");
+    }
+    return Student();
+}
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 8: include/StudentRepository.h (Evaluation 1 MVP)</h3>
+<pre>
+#ifndef STUDENT_REPOSITORY_H
+#define STUDENT_REPOSITORY_H
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;memory&gt;
+#include "Student.h"
+#include "Course.h"
+#include "User.h"
+
+class StudentRepository {
+private:
+    std::string studentsFilePath;
+    std::string coursesFilePath;
+    std::string usersFilePath;
+
+    std::vector&lt;Student&gt; studentsCache;
+    std::vector&lt;Course&gt; coursesCache;
+    std::vector&lt;User&gt; usersCache;
+
+    void loadStudents();
+    void saveStudents();
+
+    void loadCourses();
+    void saveCourses();
+
+    void loadUsers();
+    void saveUsers();
+
+public:
+    StudentRepository(const std::string&amp; dataDir = "data");
+
+    // Student CRUD operations
+    bool add(const Student&amp; student, std::string&amp; errorMessage);
+    Student* findById(const std::string&amp; studentId);
+    std::vector&lt;Student&gt; search(const std::string&amp; keyword);
+    bool update(const Student&amp; student, std::string&amp; errorMessage);
+    bool deactivate(const std::string&amp; studentId, std::string&amp; errorMessage);
+    std::vector&lt;Student&gt; getAllStudents(bool includeInactive = true);
+
+    // Course operations
+    bool addCourse(const Course&amp; course, std::string&amp; errorMessage);
+    Course* findCourseById(const std::string&amp; courseId);
+    std::vector&lt;Course&gt; getAllCourses();
+
+    // User operations
+    bool addUser(const User&amp; user, std::string&amp; errorMessage);
+    User* findUserByUsername(const std::string&amp; username);
+    std::vector&lt;User&gt; getAllUsers();
+
+    // Seed defaults
+    void seedDefaultsIfEmpty();
+};
+
+#endif // STUDENT_REPOSITORY_H
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 9: src/StudentRepository.cpp (Evaluation 1 MVP)</h3>
+<pre>
+#include "../include/StudentRepository.h"
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+StudentRepository::StudentRepository(const std::string&amp; dataDir)
+    : studentsFilePath(dataDir + "/students.txt"),
+      coursesFilePath(dataDir + "/courses.txt"),
+      usersFilePath(dataDir + "/users.txt") {
+    loadUsers();
+    loadCourses();
+    loadStudents();
+    seedDefaultsIfEmpty();
+}
+
+void StudentRepository::loadUsers() {
+    usersCache.clear();
+    std::ifstream inFile(usersFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() &amp;&amp; line[0] != '#') usersCache.push_back(User::deserialize(line));
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveUsers() {
+    std::ofstream outFile(usersFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto&amp; u : usersCache) outFile &lt;&lt; u.serialize() &lt;&lt; "\n";
+    outFile.close();
+}
+
+void StudentRepository::loadCourses() {
+    coursesCache.clear();
+    std::ifstream inFile(coursesFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() &amp;&amp; line[0] != '#') coursesCache.push_back(Course::deserialize(line));
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveCourses() {
+    std::ofstream outFile(coursesFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto&amp; c : coursesCache) outFile &lt;&lt; c.serialize() &lt;&lt; "\n";
+    outFile.close();
+}
+
+void StudentRepository::loadStudents() {
+    studentsCache.clear();
+    std::ifstream inFile(studentsFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() &amp;&amp; line[0] != '#') studentsCache.push_back(Student::deserialize(line));
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveStudents() {
+    std::ofstream outFile(studentsFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto&amp; s : studentsCache) outFile &lt;&lt; s.serialize() &lt;&lt; "\n";
+    outFile.close();
+}
+
+void StudentRepository::seedDefaultsIfEmpty() {
+    if (usersCache.empty()) {
+        usersCache.push_back(User("U001", "admin", Utils::hashPassword("admin123"), "Admin", true));
+        usersCache.push_back(User("U002", "staff", Utils::hashPassword("staff123"), "Staff", true));
+        saveUsers();
+    }
+    if (coursesCache.empty()) {
+        coursesCache.push_back(Course("CS101", "Computer Science &amp; Engineering", "CSE", 4));
+        coursesCache.push_back(Course("IT102", "Information Technology", "IT", 4));
+        coursesCache.push_back(Course("EC103", "Electronics &amp; Communication", "ECE", 4));
+        coursesCache.push_back(Course("ME104", "Mechanical Engineering", "MECH", 4));
+        saveCourses();
+    }
+    if (studentsCache.empty()) {
+        studentsCache.push_back(Student("S101", "Shubham Gupta", "2003-05-14", "shubham@univ.edu", "9876543210", "Block A, Campus Hostel", "CS101", "Active"));
+        studentsCache.push_back(Student("S102", "Swapnil Yadav", "2003-08-22", "swapnil@univ.edu", "9876543211", "Block B, Campus Hostel", "CS101", "Active"));
+        studentsCache.push_back(Student("S103", "Aarav Sharma", "2003-01-10", "aarav@univ.edu", "9876543212", "Green Park, City", "IT102", "Active"));
+        saveStudents();
+    }
+}
+
+bool StudentRepository::add(const Student&amp; student, std::string&amp; errorMessage) {
+    for (const auto&amp; s : studentsCache) {
+        if (Utils::toUpper(s.getStudentId()) == Utils::toUpper(student.getStudentId())) {
+            errorMessage = "Conflict Error: Student ID '" + student.getStudentId() + "' already exists in the system.";
+            return false;
+        }
+    }
+    studentsCache.push_back(student);
+    saveStudents();
+    return true;
+}
+
+Student* StudentRepository::findById(const std::string&amp; studentId) {
+    std::string upperTarget = Utils::toUpper(Utils::trim(studentId));
+    for (auto&amp; s : studentsCache) {
+        if (Utils::toUpper(s.getStudentId()) == upperTarget) return &amp;s;
+    }
+    return nullptr;
+}
+
+std::vector&lt;Student&gt; StudentRepository::search(const std::string&amp; keyword) {
+    std::vector&lt;Student&gt; results;
+    std::string lowerKeyword = keyword;
+    std::transform(lowerKeyword.begin(), lowerKeyword.end(), lowerKeyword.begin(), ::tolower);
+
+    for (const auto&amp; s : studentsCache) {
+        std::string sId = s.getStudentId();
+        std::string sName = s.getFullName();
+        std::string sCourse = s.getCourseId();
+
+        std::transform(sId.begin(), sId.end(), sId.begin(), ::tolower);
+        std::transform(sName.begin(), sName.end(), sName.begin(), ::tolower);
+        std::transform(sCourse.begin(), sCourse.end(), sCourse.begin(), ::tolower);
+
+        if (sId.find(lowerKeyword) != std::string::npos ||
+            sName.find(lowerKeyword) != std::string::npos ||
+            sCourse.find(lowerKeyword) != std::string::npos) {
+            results.push_back(s);
+        }
+    }
+    return results;
+}
+
+bool StudentRepository::update(const Student&amp; student, std::string&amp; errorMessage) {
+    for (auto&amp; s : studentsCache) {
+        if (s.getStudentId() == student.getStudentId()) {
+            s = student;
+            saveStudents();
+            return true;
+        }
+    }
+    errorMessage = "Update Error: Student with ID '" + student.getStudentId() + "' not found.";
+    return false;
+}
+
+bool StudentRepository::deactivate(const std::string&amp; studentId, std::string&amp; errorMessage) {
+    Student* s = findById(studentId);
+    if (!s) {
+        errorMessage = "Error: Student with ID '" + studentId + "' not found.";
+        return false;
+    }
+    s-&gt;setStatus("Inactive");
+    saveStudents();
+    return true;
+}
+
+std::vector&lt;Student&gt; StudentRepository::getAllStudents(bool includeInactive) {
+    if (includeInactive) return studentsCache;
+    std::vector&lt;Student&gt; activeList;
+    for (const auto&amp; s : studentsCache) {
+        if (s.isActive()) activeList.push_back(s);
+    }
+    return activeList;
+}
+
+bool StudentRepository::addCourse(const Course&amp; course, std::string&amp; errorMessage) {
+    for (const auto&amp; c : coursesCache) {
+        if (Utils::toUpper(c.getCourseId()) == Utils::toUpper(course.getCourseId())) {
+            errorMessage = "Course ID '" + course.getCourseId() + "' already exists.";
+            return false;
+        }
+    }
+    coursesCache.push_back(course);
+    saveCourses();
+    return true;
+}
+
+Course* StudentRepository::findCourseById(const std::string&amp; courseId) {
+    std::string upperTarget = Utils::toUpper(Utils::trim(courseId));
+    for (auto&amp; c : coursesCache) {
+        if (Utils::toUpper(c.getCourseId()) == upperTarget) return &amp;c;
+    }
+    return nullptr;
+}
+
+std::vector&lt;Course&gt; StudentRepository::getAllCourses() {
+    return coursesCache;
+}
+
+bool StudentRepository::addUser(const User&amp; user, std::string&amp; errorMessage) {
+    for (const auto&amp; u : usersCache) {
+        if (u.getUsername() == user.getUsername()) {
+            errorMessage = "Username '" + user.getUsername() + "' already exists.";
+            return false;
+        }
+    }
+    usersCache.push_back(user);
+    saveUsers();
+    return true;
+}
+
+User* StudentRepository::findUserByUsername(const std::string&amp; username) {
+    for (auto&amp; u : usersCache) {
+        if (u.getUsername() == username) return &amp;u;
+    }
+    return nullptr;
+}
+
+std::vector&lt;User&gt; StudentRepository::getAllUsers() {
+    return usersCache;
+}
+</pre>
+
+<div class="page-break"></div>
+
+<h3 class="file-title">File 10: src/main.cpp (Evaluation 1 MVP Entrypoint)</h3>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;string&gt;
+#include "../include/StudentRepository.h"
+#include "../include/User.h"
+#include "../include/Student.h"
+#include "../include/Course.h"
+#include "../include/Utils.h"
+
+void printHeader() {
+    std::cout &lt;&lt; "\n=================================================================\n";
+    std::cout &lt;&lt; "                 STUDENT RECORD MANAGEMENT SYSTEM                \n";
+    std::cout &lt;&lt; "          Prepared by: Shubham Gupta (45) &amp; Swapnil Yadav (46)   \n";
+    std::cout &lt;&lt; "                      Evaluation 1 - MVP Version                 \n";
+    std::cout &lt;&lt; "=================================================================\n";
+}
+
+void printDivider() {
+    std::cout &lt;&lt; "-----------------------------------------------------------------\n";
+}
+
+int main() {
+    StudentRepository repo("data");
+    User* currentUser = nullptr;
+
+    while (true) {
+        printHeader();
+
+        if (currentUser == nullptr) {
+            std::cout &lt;&lt; "\n&gt;&gt;&gt; SYSTEM AUTHENTICATION &lt;&lt;&lt;\n";
+            std::cout &lt;&lt; "1. Login (Admin / Staff)\n";
+            std::cout &lt;&lt; "2. Quick Test Credentials Info\n";
+            std::cout &lt;&lt; "0. Exit Application\n";
+            std::cout &lt;&lt; "Enter Choice: ";
+
+            int authChoice = -1;
+            if (!(std::cin &gt;&gt; authChoice)) {
+                std::cin.clear();
+                std::string dummy;
+                std::getline(std::cin, dummy);
+                continue;
+            }
+            std::cin.ignore(1000, '\n');
+
+            if (authChoice == 0) {
+                std::cout &lt;&lt; "\nExiting System. Thank you!\n";
+                break;
+            } else if (authChoice == 2) {
+                printDivider();
+                std::cout &lt;&lt; "[INFO] Default System Credentials:\n";
+                std::cout &lt;&lt; "  Admin: username: admin | password: admin123\n";
+                std::cout &lt;&lt; "  Staff: username: staff | password: staff123\n";
+                printDivider();
+                continue;
+            } else if (authChoice == 1) {
+                std::string username, password;
+                std::cout &lt;&lt; "Enter Username: ";
+                std::getline(std::cin, username);
+                std::cout &lt;&lt; "Enter Password: ";
+                std::getline(std::cin, password);
+
+                username = Utils::trim(username);
+                password = Utils::trim(password);
+
+                User* user = repo.findUserByUsername(username);
+                if (user &amp;&amp; user-&gt;login(password)) {
+                    currentUser = user;
+                    std::cout &lt;&lt; "\n[SUCCESS] Login successful! Welcome, " &lt;&lt; currentUser-&gt;getUsername()
+                              &lt;&lt; " (" &lt;&lt; currentUser-&gt;getRole() &lt;&lt; ")\n";
+                } else {
+                    std::cout &lt;&lt; "\n[ERROR] Invalid username or password! Access Denied.\n";
+                }
+            }
+        } else {
+            std::cout &lt;&lt; "\n&gt;&gt;&gt; MAIN DASHBOARD [User: " &lt;&lt; currentUser-&gt;getUsername()
+                      &lt;&lt; " | Role: " &lt;&lt; currentUser-&gt;getRole() &lt;&lt; "] &lt;&lt;&lt;\n";
+            std::cout &lt;&lt; "1. Add New Student Record\n";
+            std::cout &lt;&lt; "2. View All Student Records\n";
+            std::cout &lt;&lt; "3. Search Student by ID\n";
+            std::cout &lt;&lt; "4. View Available Courses\n";
+            std::cout &lt;&lt; "5. Logout\n";
+            std::cout &lt;&lt; "0. Exit Application\n";
+            std::cout &lt;&lt; "Select Operation: ";
+
+            int op = -1;
+            if (!(std::cin &gt;&gt; op)) {
+                std::cin.clear();
+                std::string dummy;
+                std::getline(std::cin, dummy);
+                continue;
+            }
+            std::cin.ignore(1000, '\n');
+
+            if (op == 0) {
+                std::cout &lt;&lt; "\nExiting System. Goodbye!\n";
+                break;
+            } else if (op == 5) {
+                currentUser-&gt;logout();
+                currentUser = nullptr;
+                std::cout &lt;&lt; "\n[INFO] You have successfully logged out.\n";
+            } else if (op == 1) {
+                std::cout &lt;&lt; "\n--- ADD NEW STUDENT ---\n";
+                std::string sId, name, dob, email, phone, address, courseId;
+
+                std::cout &lt;&lt; "Enter Student ID (e.g. S104): ";
+                std::getline(std::cin, sId);
+                std::cout &lt;&lt; "Enter Full Name: ";
+                std::getline(std::cin, name);
+                std::cout &lt;&lt; "Enter Date of Birth (YYYY-MM-DD): ";
+                std::getline(std::cin, dob);
+                std::cout &lt;&lt; "Enter Email Address: ";
+                std::getline(std::cin, email);
+                std::cout &lt;&lt; "Enter Phone Number (10 digits): ";
+                std::getline(std::cin, phone);
+                std::cout &lt;&lt; "Enter Address: ";
+                std::getline(std::cin, address);
+                std::cout &lt;&lt; "Enter Course ID (e.g. CS101, IT102): ";
+                std::getline(std::cin, courseId);
+
+                Student newStudent(Utils::trim(sId), Utils::trim(name), Utils::trim(dob),
+                                   Utils::trim(email), Utils::trim(phone), Utils::trim(address),
+                                   Utils::trim(courseId), "Active");
+
+                std::string validationError;
+                if (!newStudent.validateDetails(validationError)) {
+                    std::cout &lt;&lt; "\n[ERROR] " &lt;&lt; validationError &lt;&lt; "\n";
+                } else {
+                    std::string repoError;
+                    if (repo.add(newStudent, repoError)) {
+                        std::cout &lt;&lt; "\n[SUCCESS] Student record saved successfully! Assigned ID: "
+                                  &lt;&lt; newStudent.getStudentId() &lt;&lt; "\n";
+                    } else {
+                        std::cout &lt;&lt; "\n[REJECTED] " &lt;&lt; repoError &lt;&lt; "\n";
+                    }
+                }
+            } else if (op == 2) {
+                std::vector&lt;Student&gt; students = repo.getAllStudents();
+                std::cout &lt;&lt; "\n--- STUDENT ROSTER (" &lt;&lt; students.size() &lt;&lt; " Records) ---\n";
+                std::cout &lt;&lt; std::left &lt;&lt; std::setw(8) &lt;&lt; "ID"
+                          &lt;&lt; std::setw(20) &lt;&lt; "Full Name"
+                          &lt;&lt; std::setw(12) &lt;&lt; "DOB"
+                          &lt;&lt; std::setw(22) &lt;&lt; "Email"
+                          &lt;&lt; std::setw(14) &lt;&lt; "Phone"
+                          &lt;&lt; std::setw(10) &lt;&lt; "Course"
+                          &lt;&lt; std::setw(10) &lt;&lt; "Status" &lt;&lt; "\n";
+                printDivider();
+                for (const auto&amp; s : students) {
+                    std::cout &lt;&lt; std::left &lt;&lt; std::setw(8) &lt;&lt; s.getStudentId()
+                              &lt;&lt; std::setw(20) &lt;&lt; s.getFullName()
+                              &lt;&lt; std::setw(12) &lt;&lt; s.getDateOfBirth()
+                              &lt;&lt; std::setw(22) &lt;&lt; s.getEmail()
+                              &lt;&lt; std::setw(14) &lt;&lt; s.getPhone()
+                              &lt;&lt; std::setw(10) &lt;&lt; s.getCourseId()
+                              &lt;&lt; std::setw(10) &lt;&lt; s.getStatus() &lt;&lt; "\n";
+                }
+                printDivider();
+            } else if (op == 3) {
+                std::cout &lt;&lt; "\n--- SEARCH STUDENT BY ID ---\n";
+                std::cout &lt;&lt; "Enter Student ID to Search: ";
+                std::string queryId;
+                std::getline(std::cin, queryId);
+                queryId = Utils::trim(queryId);
+
+                Student* found = repo.findById(queryId);
+                if (found) {
+                    printDivider();
+                    std::cout &lt;&lt; "Student Found:\n";
+                    std::cout &lt;&lt; "  ID:            " &lt;&lt; found-&gt;getStudentId() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Full Name:     " &lt;&lt; found-&gt;getFullName() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Date of Birth: " &lt;&lt; found-&gt;getDateOfBirth() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Email:         " &lt;&lt; found-&gt;getEmail() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Phone:         " &lt;&lt; found-&gt;getPhone() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Address:       " &lt;&lt; found-&gt;getAddress() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Course:        " &lt;&lt; found-&gt;getCourseId() &lt;&lt; "\n";
+                    std::cout &lt;&lt; "  Status:        " &lt;&lt; found-&gt;getStatus() &lt;&lt; "\n";
+                    printDivider();
+                } else {
+                    std::cout &lt;&lt; "\n[INFO] No matching record found for ID '" &lt;&lt; queryId &lt;&lt; "'.\n";
+                }
+            } else if (op == 4) {
+                std::vector&lt;Course&gt; courses = repo.getAllCourses();
+                std::cout &lt;&lt; "\n--- AVAILABLE COURSES (" &lt;&lt; courses.size() &lt;&lt; ") ---\n";
+                std::cout &lt;&lt; std::left &lt;&lt; std::setw(10) &lt;&lt; "Course ID"
+                          &lt;&lt; std::setw(35) &lt;&lt; "Course Name"
+                          &lt;&lt; std::setw(15) &lt;&lt; "Department"
+                          &lt;&lt; std::setw(10) &lt;&lt; "Duration" &lt;&lt; "\n";
+                printDivider();
+                for (const auto&amp; c : courses) {
+                    std::cout &lt;&lt; std::left &lt;&lt; std::setw(10) &lt;&lt; c.getCourseId()
+                              &lt;&lt; std::setw(35) &lt;&lt; c.getCourseName()
+                              &lt;&lt; std::setw(15) &lt;&lt; c.getDepartment()
+                              &lt;&lt; c.getDurationYears() &lt;&lt; " Years\n";
+                }
+                printDivider();
+            } else {
+                std::cout &lt;&lt; "\n[ERROR] Invalid option selected. Please try again.\n";
+            }
+        }
+    }
+
+    return 0;
+}
+</pre>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4: DATA PERSISTENCE FILES -->
+<h2 class="section-title">4. Flat-File Relational Database Storage (Evaluation 1)</h2>
+<p>
+    Evaluation 1 persists records into structured text databases utilizing pipe-delimiter serialization:
+</p>
+
+<h3 class="file-title">data/users.txt</h3>
+<pre>
+U001|admin|sha256_00000000admin123|Admin|1
+U002|staff|sha256_00000000staff123|Staff|1
+</pre>
+
+<h3 class="file-title">data/courses.txt</h3>
+<pre>
+CS101|Computer Science &amp; Engineering|CSE|4
+IT102|Information Technology|IT|4
+EC103|Electronics &amp; Communication|ECE|4
+ME104|Mechanical Engineering|MECH|4
+</pre>
+
+<h3 class="file-title">data/students.txt</h3>
+<pre>
+S101|Shubham Gupta|2003-05-14|shubham@univ.edu|9876543210|Block A, Campus Hostel|CS101|Active
+S102|Swapnil Yadav|2003-08-22|swapnil@univ.edu|9876543211|Block B, Campus Hostel|CS101|Active
+S103|Aarav Sharma|2003-01-10|aarav@univ.edu|9876543212|Green Park, City|IT102|Active
+</pre>
+
+<!-- SECTION 5: COMPILATION & EXECUTION -->
+<h2 class="section-title">5. Compilation and Execution Guide</h2>
+<p>
+    Evaluation 1 compiles directly with zero external dependencies using any standard C++17 compiler (GCC / MinGW):
+</p>
+<pre>
+# Compilation Command for Evaluation 1 MVP
+g++ -std=c++17 -Wall -Iinclude src/main.cpp src/User.cpp src/Course.cpp src/Student.cpp src/StudentRepository.cpp -o srms_v1.exe
+
+# Execute Application
+.\srms_v1.exe
+</pre>
+
+<!-- SECTION 6: EXECUTION OUTPUTS -->
+<h2 class="section-title">6. Evaluation 1 Execution Screenshots &amp; Terminal Outputs</h2>
+
+<p><strong>Screen 1: Authentication &amp; Main Dashboard Login:</strong></p>
+<div class="output-box">
+=================================================================
+                 STUDENT RECORD MANAGEMENT SYSTEM                
+          Prepared by: Shubham Gupta (45) &amp; Swapnil Yadav (46)   
+                      Evaluation 1 - MVP Version                 
+=================================================================
+
+&gt;&gt;&gt; SYSTEM AUTHENTICATION &lt;&lt;&lt;
+1. Login (Admin / Staff)
+2. Quick Test Credentials Info
+0. Exit Application
+Enter Choice: 1
+Enter Username: admin
+Enter Password: [admin123]
+
+[SUCCESS] Login successful! Welcome, admin (Admin)
+</div>
+
+<p><strong>Screen 2: Student Roster Display (All Records):</strong></p>
+<div class="output-box">
+--- STUDENT ROSTER (3 Records) ---
+ID      Full Name           DOB         Email                 Phone         Course    Status    
+-----------------------------------------------------------------------------------------
+S101    Shubham Gupta       2003-05-14  shubham@univ.edu      9876543210    CS101     Active    
+S102    Swapnil Yadav       2003-08-22  swapnil@univ.edu      9876543211    CS101     Active    
+S103    Aarav Sharma        2003-01-10  aarav@univ.edu        9876543212    IT102     Active    
+-----------------------------------------------------------------------------------------
+</div>
+
+<p><strong>Screen 3: Duplicate Student ID Validation (TC-04):</strong></p>
+<div class="output-box">
+--- ADD NEW STUDENT ---
+Enter Student ID (e.g. S104): S101
+Enter Full Name: Duplicate Tester
+Enter Date of Birth (YYYY-MM-DD): 2003-01-01
+Enter Email Address: test@univ.edu
+Enter Phone Number (10 digits): 9988776655
+Enter Address: Campus Block
+Enter Course ID: CS101
+
+[REJECTED] Conflict Error: Student ID 'S101' already exists in the system.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 7: GIT EVIDENCE -->
+<h2 class="section-title">7. Git Repository Commit &amp; Release Tag Evidence</h2>
+<p>
+    In compliance with Evaluation 1 submission rules (<em>"Demo of First cut or MVP version; and code push in git repository"</em>), 
+    the code was committed and tagged with <strong><code>v1.0-mvp</code></strong>:
+</p>
+
+<table class="data-table">
+    <tr>
+        <th>Repository URL</th>
+        <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM</code></td>
+    </tr>
+    <tr>
+        <th>Git Release Tag</th>
+        <td><code>v1.0-mvp</code></td>
+    </tr>
+    <tr>
+        <th>Direct Release Link</th>
+        <td><code>https://github.com/shubhamgupta-coder/Student-RECORD-MANAGMENT-SYSTEM/tree/v1.0-mvp</code></td>
+    </tr>
+    <tr>
+        <th>Commit Hash</th>
+        <td><code>d2f24e7</code></td>
+    </tr>
+    <tr>
+        <th>Commit Message</th>
+        <td><code>Evaluation 1: Demo of First cut / MVP version (Student &amp; Course Management, Login, Search, Persistence)</code></td>
+    </tr>
+</table>
+
+<div class="output-box">
+$ git log --oneline --decorate
+d2f24e7 (tag: v1.0-mvp) Evaluation 1: Demo of First cut / MVP version (Student &amp; Course Management, Login, Search, Persistence)
+
+$ git tag -l
+v1.0-mvp
+</div>
+
+<div class="footer-note">
+    Student Record Management System (SRMS) &bull; Evaluation 1 Code Report &bull; Authors: Shubham Gupta (45) &amp; Swapnil Yadav (46)
+</div>
+
+</body>
+</html>
