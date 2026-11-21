@@ -55,6 +55,7 @@ public:
     bool update(const Student& student, std::string& errorMessage);
     bool deactivate(const std::string& studentId, std::string& errorMessage);
     bool activate(const std::string& studentId, std::string& errorMessage);
+    bool remove(const std::string& studentId, std::string& errorMessage);
     std::vector<Student> getAllStudents(bool includeInactive = true);
 
     // Course operations

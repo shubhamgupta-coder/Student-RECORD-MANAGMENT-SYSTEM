@@ -299,6 +299,21 @@ bool StudentRepository::activate(const std::string& studentId, std::string& erro
     return true;
 }
 
+bool StudentRepository::remove(const std::string& studentId, std::string& errorMessage) {
+    std::string upperTarget = Utils::toUpper(Utils::trim(studentId));
+    auto it = std::remove_if(studentsCache.begin(), studentsCache.end(), [&](const Student& s) {
+        return Utils::toUpper(s.getStudentId()) == upperTarget;
+    });
+
+    if (it != studentsCache.end()) {
+        studentsCache.erase(it, studentsCache.end());
+        saveStudents();
+        return true;
+    }
+    errorMessage = "Delete Error: Student ID '" + studentId + "' not found.";
+    return false;
+}
+
 std::vector<Student> StudentRepository::getAllStudents(bool includeInactive) {
     if (includeInactive) {
         return studentsCache;

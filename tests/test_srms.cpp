@@ -69,7 +69,9 @@ int main() {
     // ---------------------------------------------------------
     {
         std::string testId = "S199";
-        // Remove if previously exists to ensure clean test
+        std::string dummyErr;
+        repo.remove(testId, dummyErr); // Clean up if exists from a prior test run
+
         Student newStudent(testId, "Rohan Verma", "2003-04-12", "rohan@univ.edu", "9123456780", "12 Main St, Delhi", "CS101", "Active");
         std::string err;
         bool added = repo.add(newStudent, err);
