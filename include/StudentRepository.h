@@ -9,6 +9,7 @@
 #include "User.h"
 #include "Enrollment.h"
 #include "Mark.h"
+#include "Attendance.h"
 
 class StudentRepository {
 private:
@@ -17,12 +18,14 @@ private:
     std::string usersFilePath;
     std::string enrollmentsFilePath;
     std::string marksFilePath;
+    std::string attendanceFilePath;
 
     std::vector<Student> studentsCache;
     std::vector<Course> coursesCache;
     std::vector<User> usersCache;
     std::vector<Enrollment> enrollmentsCache;
     std::vector<Mark> marksCache;
+    std::vector<Attendance> attendanceCache;
 
     void loadStudents();
     void saveStudents();
@@ -39,6 +42,9 @@ private:
     void loadMarks();
     void saveMarks();
 
+    void loadAttendance();
+    void saveAttendance();
+
 public:
     StudentRepository(const std::string& dataDir = "data");
 
@@ -48,6 +54,7 @@ public:
     std::vector<Student> search(const std::string& keyword);
     bool update(const Student& student, std::string& errorMessage);
     bool deactivate(const std::string& studentId, std::string& errorMessage);
+    bool activate(const std::string& studentId, std::string& errorMessage);
     std::vector<Student> getAllStudents(bool includeInactive = true);
 
     // Course operations
@@ -69,6 +76,11 @@ public:
     bool addMark(const Mark& mark, std::string& errorMessage);
     std::vector<Mark> getMarksByStudentId(const std::string& studentId);
     std::vector<Mark> getAllMarks();
+
+    // Attendance operations
+    bool addAttendance(const Attendance& attendance, std::string& errorMessage);
+    std::vector<Attendance> getAttendanceByStudentId(const std::string& studentId);
+    std::vector<Attendance> getAllAttendance();
 
     // Seed defaults
     void seedDefaultsIfEmpty();

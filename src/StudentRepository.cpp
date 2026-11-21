@@ -8,12 +8,14 @@ StudentRepository::StudentRepository(const std::string& dataDir)
       coursesFilePath(dataDir + "/courses.txt"),
       usersFilePath(dataDir + "/users.txt"),
       enrollmentsFilePath(dataDir + "/enrollments.txt"),
-      marksFilePath(dataDir + "/marks.txt") {
+      marksFilePath(dataDir + "/marks.txt"),
+      attendanceFilePath(dataDir + "/attendance.txt") {
     loadUsers();
     loadCourses();
     loadStudents();
     loadEnrollments();
     loadMarks();
+    loadAttendance();
     seedDefaultsIfEmpty();
 }
 
@@ -132,6 +134,29 @@ void StudentRepository::saveMarks() {
     outFile.close();
 }
 
+void StudentRepository::loadAttendance() {
+    attendanceCache.clear();
+    std::ifstream inFile(attendanceFilePath);
+    if (!inFile.is_open()) return;
+    std::string line;
+    while (std::getline(inFile, line)) {
+        line = Utils::trim(line);
+        if (!line.empty() && line[0] != '#') {
+            attendanceCache.push_back(Attendance::deserialize(line));
+        }
+    }
+    inFile.close();
+}
+
+void StudentRepository::saveAttendance() {
+    std::ofstream outFile(attendanceFilePath);
+    if (!outFile.is_open()) return;
+    for (const auto& a : attendanceCache) {
+        outFile << a.serialize() << "\n";
+    }
+    outFile.close();
+}
+
 void StudentRepository::seedDefaultsIfEmpty() {
     // Seed default users if empty
     if (usersCache.empty()) {
@@ -178,6 +203,19 @@ void StudentRepository::seedDefaultsIfEmpty() {
         marksCache.push_back(Mark("M007", "S103", "Web Development", "Final Exam", 85.0, 100.0));
         marksCache.push_back(Mark("M008", "S103", "Software Engineering", "Final Exam", 82.0, 100.0));
         saveMarks();
+    }
+
+    // Seed default attendance if empty
+    if (attendanceCache.empty()) {
+        attendanceCache.push_back(Attendance("A001", "S101", "2024-11-01", "Present"));
+        attendanceCache.push_back(Attendance("A002", "S101", "2024-11-02", "Present"));
+        attendanceCache.push_back(Attendance("A003", "S101", "2024-11-03", "Present"));
+        attendanceCache.push_back(Attendance("A004", "S102", "2024-11-01", "Present"));
+        attendanceCache.push_back(Attendance("A005", "S102", "2024-11-02", "Absent"));
+        attendanceCache.push_back(Attendance("A006", "S102", "2024-11-03", "Present"));
+        attendanceCache.push_back(Attendance("A007", "S103", "2024-11-01", "Present"));
+        attendanceCache.push_back(Attendance("A008", "S103", "2024-11-02", "Present"));
+        saveAttendance();
     }
 }
 
@@ -250,6 +288,17 @@ bool StudentRepository::deactivate(const std::string& studentId, std::string& er
     return true;
 }
 
+bool StudentRepository::activate(const std::string& studentId, std::string& errorMessage) {
+    Student* s = findById(studentId);
+    if (!s) {
+        errorMessage = "Error: Student with ID '" + studentId + "' not found.";
+        return false;
+    }
+    s->setStatus("Active");
+    saveStudents();
+    return true;
+}
+
 std::vector<Student> StudentRepository::getAllStudents(bool includeInactive) {
     if (includeInactive) {
         return studentsCache;
@@ -313,14 +362,12 @@ std::vector<User> StudentRepository::getAllUsers() {
 }
 
 bool StudentRepository::addEnrollment(const Enrollment& enrollment, std::string& errorMessage) {
-    // Check Foreign Key: student_id must exist in Student table
     Student* student = findById(enrollment.getStudentId());
     if (!student) {
         errorMessage = "Foreign Key Error: Student ID '" + enrollment.getStudentId() + "' does not exist.";
         return false;
     }
 
-    // Check Foreign Key: course_id must exist in Course table
     Course* course = findCourseById(enrollment.getCourseId());
     if (!course) {
         errorMessage = "Foreign Key Error: Course ID '" + enrollment.getCourseId() + "' does not exist.";
@@ -348,12 +395,10 @@ std::vector<Enrollment> StudentRepository::getAllEnrollments() {
 }
 
 bool StudentRepository::addMark(const Mark& mark, std::string& errorMessage) {
-    // Check validation of score
     if (!mark.validateScore(errorMessage)) {
         return false;
     }
 
-    // Check Foreign Key: student_id must exist in Student table
     Student* student = findById(mark.getStudentId());
     if (!student) {
         errorMessage = "Foreign Key Error: Cannot enter mark. Student ID '" + mark.getStudentId() + "' does not exist.";
@@ -378,4 +423,35 @@ std::vector<Mark> StudentRepository::getMarksByStudentId(const std::string& stud
 
 std::vector<Mark> StudentRepository::getAllMarks() {
     return marksCache;
+}
+
+bool StudentRepository::addAttendance(const Attendance& attendance, std::string& errorMessage) {
+    if (!attendance.validate(errorMessage)) {
+        return false;
+    }
+
+    Student* student = findById(attendance.getStudentId());
+    if (!student) {
+        errorMessage = "Foreign Key Error: Student ID '" + attendance.getStudentId() + "' does not exist.";
+        return false;
+    }
+
+    attendanceCache.push_back(attendance);
+    saveAttendance();
+    return true;
+}
+
+std::vector<Attendance> StudentRepository::getAttendanceByStudentId(const std::string& studentId) {
+    std::vector<Attendance> results;
+    std::string upperId = Utils::toUpper(Utils::trim(studentId));
+    for (const auto& a : attendanceCache) {
+        if (Utils::toUpper(a.getStudentId()) == upperId) {
+            results.push_back(a);
+        }
+    }
+    return results;
+}
+
+std::vector<Attendance> StudentRepository::getAllAttendance() {
+    return attendanceCache;
 }

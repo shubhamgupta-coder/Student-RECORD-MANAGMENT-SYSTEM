@@ -1,0 +1,18 @@
+=========================================================================================
+                             STUDENT ACADEMIC PERFORMANCE SUMMARY                        
+=========================================================================================
+Student ID:    S101
+Full Name:     Shubham Gupta
+Course ID:     CS101
+Profile Status: Active
+-----------------------------------------------------------------------------------------
+Mark ID Subject Name                    Assessment      Score     Max       Percentage  
+-----------------------------------------------------------------------------------------
+M001    Data Structures & Algorithms    Final Exam      92.5      100       92.50%
+M002    Database Management Systems     Final Exam      88.00     100.00    88.00%
+M003    Computer Networks               Mid-Term        46.00     50.00     92.00%
+-----------------------------------------------------------------------------------------
+CUMULATIVE SCORE:      226.50 / 250.00
+CUMULATIVE PERCENTAGE: 90.60%
+FINAL LETTER GRADE:    A+ (Outstanding)
+=========================================================================================
