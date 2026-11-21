@@ -1,10 +1,9 @@
 @echo off
 echo =================================================================
 echo       BUILDING STUDENT RECORD MANAGEMENT SYSTEM (SRMS)
-echo          Authors: Shubham Gupta (45) & Swapnil Yadav (46)
+echo       Authors: Shubham Gupta (45) and Swapnil Yadav (46)
 echo =================================================================
 
-if not exist bin mkdir bin
 if not exist reports mkdir reports
 
 echo [1/2] Compiling main SRMS Application...
