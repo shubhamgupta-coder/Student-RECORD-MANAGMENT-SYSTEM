@@ -1,0 +1,2 @@
+U001|admin|sha256_00000000185030e4|Admin|1
+U002|staff|sha256_00000000685c60af|Staff|1

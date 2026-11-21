@@ -1,0 +1,4 @@
+CS101|Computer Science & Engineering|CSE|4
+IT102|Information Technology|IT|4
+EC103|Electronics & Communication|ECE|4
+ME104|Mechanical Engineering|MECH|4
